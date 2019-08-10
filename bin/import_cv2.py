@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 '''
 Broadly speaking, this script takes the audio downloaded from Common Voice
 for a certain language, in addition to the *.tsv files output by CorporaCreator,
@@ -133,8 +133,8 @@ def _maybe_convert_wav(mp3_filename, wav_filename):
         transformer.convert(samplerate=SAMPLE_RATE)
         try:
             transformer.build(mp3_filename, wav_filename)
-        except sox.core.SoxError:
-            pass
+        except sox.core.SoxError as ex:
+            print('SoX processing error', ex, orig_filename, wav_filename)
 
 
 if __name__ == "__main__":
